@@ -1,4 +1,87 @@
-﻿title: MemoryCase
+﻿title: Start
 ---
-This is an example of a Yarn Spinner script. Write your dialogue here!
+<<reset_case>>
+
+集中休憩室に、今日の業務を終えた社員が入ってくる。
+相手の顔は見えない。
+あなたは記憶調整担当として、社員の話を聞く。
+
+ナレーション: 本日の改竄可能回数は {remaining_hacks()} 回です。
+
+[[証言を聞く|Testimony_1]]
+===
+
+title: Testimony_1
+---
+<<set_segment 1>>
+社員: {current_text()}
+
+ナレーション: 残り改竄回数は {remaining_hacks()} 回。
+
+<<if can_hack()>>
+    -> この節を改竄する
+        <<hack_current>>
+        ナレーション: 記憶を調整した。
+        社員: {current_text()}
+        [[次の証言へ|Testimony_2]]
+<<endif>>
+
+-> この節はそのままにする
+    <<keep_current>>
+    ナレーション: この節はそのまま記録した。
+    [[次の証言へ|Testimony_2]]
+===
+
+title: Testimony_2
+---
+<<set_segment 2>>
+社員: {current_text()}
+
+ナレーション: 残り改竄回数は {remaining_hacks()} 回。
+
+<<if can_hack()>>
+    -> この節を改竄する
+        <<hack_current>>
+        ナレーション: 記憶を調整した。
+        社員: {current_text()}
+        [[次の証言へ|Testimony_3]]
+<<endif>>
+
+-> この節はそのままにする
+    <<keep_current>>
+    ナレーション: この節はそのまま記録した。
+    [[次の証言へ|Testimony_3]]
+===
+
+title: Testimony_3
+---
+<<set_segment 3>>
+社員: {current_text()}
+
+ナレーション: 残り改竄回数は {remaining_hacks()} 回。
+
+<<if can_hack()>>
+    -> この節を改竄する
+        <<hack_current>>
+        ナレーション: 記憶を調整した。
+        社員: {current_text()}
+        [[評価へ|Result]]
+<<endif>>
+
+-> この節はそのままにする
+    <<keep_current>>
+    ナレーション: この節はそのまま記録した。
+    [[評価へ|Result]]
+===
+
+title: Result
+---
+<<evaluate_case>>
+
+ナレーション: 本日の記憶調整が終了した。
+ナレーション: 業務円滑度ランクは {rank()} です。
+ナレーション: {result_summary()}
+
+-> もう一度最初から見る
+    [[Start]]
 ===
