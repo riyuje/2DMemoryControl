@@ -1,6 +1,6 @@
 ﻿title: Start
 ---
-<<reset_case>>
+<<reset_case MemoryHackYarnBridge>>
 
 集中休憩室に、今日の業務を終えた社員が入ってくる。
 相手の顔は見えない。
@@ -14,6 +14,7 @@
 title: Testimony_1
 ---
 <<set_segment 1>>
+ナレーション: デバッグ {current_text()}
 社員: {current_text()}
 
 ナレーション: 残り改竄回数は {remaining_hacks()} 回。
